@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-navbar hideBackButton="true">
+    <ion-title>
+      Verify
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding id="page6">
+  <h3 id="verify-heading3" style="color:#008300;font-weight:400;">
+    One time password sent
+  </h3>
+  <div id="verify-markdown2" class="show-list-numbers-and-dots">
+    <p style="color:#000000;">
+      Enter the One Time Password (OTP) sent to your mobile number
+    </p>
+  </div>
+  <form id="verify-form2" [formGroup]="verifyForm">
+    <ion-item id="verify-input5">
+      <ion-label>
+        OTP
+      </ion-label>
+      <ion-input type="text" placeholder="" [(ngModel)]="restData.otp" name="otp" [formControl]="verifyForm.controls['otp']"></ion-input>
+    </ion-item>
+    <ion-item no-lines *ngIf="( verifyForm.get('otp').hasError('required') ) && verifyForm.get('otp').touched">
+        <div class="error" *ngIf="verifyForm.get('otp').hasError('required')">
+        OTP is required
+        </div>
+        </ion-item>      
+        <div *ngIf="errMsg" class="error">
+            {{ errMsg }}
+        </div>
+  </form>
+</ion-content>
+<ion-footer>
+    <button id="verify-button4" ion-button color="positive" block on-click="goToBucketsForYou()" [disabled]="!verifyForm.valid">
+        SUBMIT
+      </button>
+</ion-footer>
