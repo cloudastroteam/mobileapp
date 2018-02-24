@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Register
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding id="page5">
+  <form id="register-form1" [formGroup]="registerForm">
+    <ion-list id="register-list2">
+      <ion-item id="register-input1">
+        <ion-label>
+          Name
+        </ion-label>
+        <ion-input type="text" placeholder="" [(ngModel)]="restData.name" name="name" [formControl]="registerForm.controls['name']"></ion-input>
+      </ion-item>
+      <ion-item no-lines *ngIf="( registerForm.get('name').hasError('required') ) && registerForm.get('name').touched">
+        <div class="error" *ngIf="registerForm.get('name').hasError('required')">
+          Name is required
+        </div>
+      </ion-item>
+      <ion-item id="register-input2">
+        <ion-label>
+          Email
+        </ion-label>
+        <ion-input type="email" placeholder="" [(ngModel)]="restData.email" name="email" [formControl]="registerForm.controls['email']"></ion-input>
+      </ion-item>
+      <ion-item no-lines *ngIf="( registerForm.get('email').hasError('required') || registerForm.get('email').hasError('email') ) && registerForm.get('email').touched">
+        <div class="error" *ngIf="registerForm.get('email').hasError('required')">
+          Email is required
+        </div>
+        <div class="error" *ngIf="registerForm.get('email').hasError('email')">
+          Please enter valid email
+        </div>
+      </ion-item>
+      <ion-item id="register-input4">
+        <ion-label>
+          Mobile
+        </ion-label>
+        <ion-input type="tel" placeholder="" [(ngModel)]="restData.mobile" name="mobile" [formControl]="registerForm.controls['mobile']"></ion-input>
+      </ion-item>
+      <ion-item no-lines *ngIf="( registerForm.get('mobile').hasError('required') || registerForm.get('mobile').hasError('minlength') || registerForm.get('mobile').hasError('maxlength') ) && registerForm.get('mobile').touched">
+        <div class="error" *ngIf="registerForm.get('mobile').hasError('required')">
+          Mobile is required
+        </div>
+        <div class="error" *ngIf="registerForm.get('mobile').hasError('minlength')">
+          Please enter valid mobile
+        </div>
+        <div class="error" *ngIf="registerForm.get('mobile').hasError('maxlength')">
+          Please enter valid mobile
+        </div>
+      </ion-item>
+      <ion-item id="register-input3">
+        <ion-label>
+          Password
+        </ion-label>
+        <ion-input type="password" placeholder="" [(ngModel)]="restData.password" name="password" [formControl]="registerForm.controls['password']"></ion-input>
+      </ion-item>
+      <ion-item no-lines *ngIf="( registerForm.get('password').hasError('required') ) && registerForm.get('password').touched">
+        <div class="error" *ngIf="registerForm.get('password').hasError('required')">
+          Password is required
+        </div>
+      </ion-item>
+    </ion-list>
+    <div *ngIf="errMsg" class="error">
+          {{ errMsg }}
+        </div>
+  </form>
+</ion-content>
+<ion-footer>
+    <button id="register-button3" ion-button color="positive" block on-click="goToVerify()" [disabled]="!registerForm.valid">
+        REGISTER
+      </button>  
+</ion-footer>

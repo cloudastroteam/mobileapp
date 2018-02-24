@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Login
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding id="page7">
+  <form id="login-form3" [formGroup]="validateUserForm">
+    <ion-list id="login-list5">
+      <ion-item id="login-input6">
+        <ion-label>
+          Mobile
+        </ion-label>
+        <ion-input type="tel" placeholder="" [(ngModel)]="restData.mobile" name="mobile" [formControl]="validateUserForm.controls['mobile']"></ion-input>
+      </ion-item>
+      <ion-item no-lines *ngIf="( validateUserForm.get('mobile').hasError('required') || validateUserForm.get('mobile').hasError('minlength') || validateUserForm.get('mobile').hasError('maxlength') ) && validateUserForm.get('mobile').touched">
+        <div class="error" *ngIf="validateUserForm.get('mobile').hasError('required')">
+          Mobile is required
+        </div>
+        <div class="error" *ngIf="validateUserForm.get('mobile').hasError('minlength')">
+          Please enter valid mobile
+        </div>
+        <div class="error" *ngIf="validateUserForm.get('mobile').hasError('maxlength')">
+          Please enter valid mobile
+        </div>
+      </ion-item>
+
+      <ion-item id="login-input7">
+        <ion-label>
+          Password
+        </ion-label>
+        <ion-input type="password" placeholder="" [(ngModel)]="restData.password" name="password" [formControl]="validateUserForm.controls['password']"></ion-input>
+      </ion-item>
+      <ion-item no-lines *ngIf="( validateUserForm.get('password').hasError('required') ) && validateUserForm.get('password').touched">
+        <div class="error" *ngIf="validateUserForm.get('password').hasError('required')">
+          Password is required
+        </div>
+      </ion-item>
+    </ion-list>
+    <div *ngIf="errMsg" class="error">
+      {{ errMsg }}
+    </div>
+  </form>
+</ion-content>
+<ion-footer>
+    <button id="login-button5" ion-button color="positive" block on-click="goToBucketsForYou()" [disabled]="!validateUserForm.valid">
+        SIGN IN
+      </button>
+</ion-footer>
